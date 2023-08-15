@@ -1,5 +1,5 @@
-import { formatDate, getStrapiMedia } from "@/app/[lang]/utils/api-helpers";
-import { postRenderer } from "@/app/[lang]/utils/post-renderer";
+import { formatDate, getStrapiMedia } from "@/app/utils/api-helpers";
+import { postRenderer } from "@/app/utils/post-renderer";
 import Image from "next/image";
 
 interface Article {
@@ -40,7 +40,7 @@ export default function Post({ data }: { data: Article }) {
   const author = authorsBio.data?.attributes;
   const imageUrl = getStrapiMedia(cover.data?.attributes.url);
   const authorImgUrl = getStrapiMedia(
-    authorsBio.data?.attributes.avatar.data.attributes.url,
+    authorsBio.data?.attributes.avatar.data.attributes.url
   );
 
   return (
@@ -78,7 +78,7 @@ export default function Post({ data }: { data: Article }) {
         <p>{description}</p>
 
         {data.attributes.blocks.map((section: any, index: number) =>
-          postRenderer(section, index),
+          postRenderer(section, index)
         )}
       </div>
     </article>

@@ -1,7 +1,7 @@
 import React from "react";
 
-import ArticleSelect from "@/app/[lang]/components/ArticleSelect";
-import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
+import ArticleSelect from "@/app/components/ArticleSelect";
+import { fetchAPI } from "@/app/utils/fetch-api";
 
 async function fetchSideMenuData(filter: string) {
   try {
@@ -11,7 +11,7 @@ async function fetchSideMenuData(filter: string) {
     const categoriesResponse = await fetchAPI(
       "/categories",
       { populate: "*" },
-      options,
+      options
     );
 
     const articlesResponse = await fetchAPI(
@@ -25,7 +25,7 @@ async function fetchSideMenuData(filter: string) {
             },
           }
         : {},
-      options,
+      options
     );
 
     return {
@@ -99,7 +99,7 @@ export async function generateStaticParams() {
     {
       populate: ["category"],
     },
-    options,
+    options
   );
 
   return articleResponse.data.map(
@@ -113,6 +113,6 @@ export async function generateStaticParams() {
     }) => ({
       slug: article.attributes.slug,
       category: article.attributes.slug,
-    }),
+    })
   );
 }

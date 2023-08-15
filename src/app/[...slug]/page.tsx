@@ -1,7 +1,7 @@
-import { sectionRenderer } from "@/app/[lang]/utils/section-renderer";
+import { sectionRenderer } from "@/app/utils/section-renderer";
 import { Metadata } from "next";
-import { getPageBySlug } from "@/app/[lang]/utils/get-page-by-slug";
-import { FALLBACK_SEO } from "@/app/[lang]/utils/constants";
+import { getPageBySlug } from "@/app/utils/get-page-by-slug";
+import { FALLBACK_SEO } from "@/app/utils/constants";
 
 type Props = {
   params: {
