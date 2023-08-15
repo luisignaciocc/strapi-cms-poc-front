@@ -44,7 +44,7 @@ export default function Profile() {
       if (start === 0) {
         setData(responseData.data);
       } else {
-        setData((prevData: any[] ) => [...prevData, ...responseData.data]);
+        setData((prevData: any[]) => [...prevData, ...responseData.data]);
       }
 
       setMeta(responseData.meta);

@@ -11,7 +11,7 @@ async function fetchSideMenuData(filter: string) {
     const categoriesResponse = await fetchAPI(
       "/categories",
       { populate: "*" },
-      options
+      options,
     );
 
     const articlesResponse = await fetchAPI(
@@ -25,7 +25,7 @@ async function fetchSideMenuData(filter: string) {
             },
           }
         : {},
-      options
+      options,
     );
 
     return {
@@ -99,7 +99,7 @@ export async function generateStaticParams() {
     {
       populate: ["category"],
     },
-    options
+    options,
   );
 
   return articleResponse.data.map(
@@ -110,6 +110,9 @@ export async function generateStaticParams() {
           slug: string;
         };
       };
-    }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
+    }) => ({
+      slug: article.attributes.slug,
+      category: article.attributes.slug,
+    }),
   );
 }

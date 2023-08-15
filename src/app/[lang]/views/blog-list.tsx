@@ -55,14 +55,14 @@ export default function PostList({
       <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => {
           const imageUrl = getStrapiMedia(
-            article.attributes.cover.data?.attributes.url
+            article.attributes.cover.data?.attributes.url,
           );
 
           const category = article.attributes.category.data?.attributes;
           const authorsBio = article.attributes.authorsBio.data?.attributes;
 
           const avatarUrl = getStrapiMedia(
-            authorsBio?.avatar.data.attributes.url
+            authorsBio?.avatar.data.attributes.url,
           );
 
           return (
