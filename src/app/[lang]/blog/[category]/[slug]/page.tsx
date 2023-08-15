@@ -65,10 +65,8 @@ export async function generateStaticParams() {
     {
       populate: ["category"],
     },
-    options,
+    options
   );
-
-  if (!articleResponse || !articleResponse.data) return [];
 
   return articleResponse.data.map(
     (article: {
@@ -78,9 +76,6 @@ export async function generateStaticParams() {
           slug: string;
         };
       };
-    }) => ({
-      slug: article.attributes.slug,
-      category: article.attributes.slug,
-    }),
+    }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
   );
 }
