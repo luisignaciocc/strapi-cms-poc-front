@@ -68,7 +68,9 @@ export async function generateStaticParams() {
     options
   );
 
-  return articleResponse?.data?.map(
+  if (!articleResponse || !articleResponse.data) return [];
+
+  return articleResponse.data.map(
     (article: {
       attributes: {
         slug: string;
