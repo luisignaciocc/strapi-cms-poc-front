@@ -1,6 +1,6 @@
 import LangRedirect from "./components/LangRedirect";
 import { sectionRenderer } from "./utils/section-renderer";
-import { getPageBySlug } from "@/app/utils/get-page-by-slug";
+import { getPageBySlug } from "@/app/(site)/utils/get-page-by-slug";
 
 export default async function RootRoute({
   params,

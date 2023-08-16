@@ -6,9 +6,9 @@ import { fetchAPI } from "./utils/fetch-api";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { FALLBACK_SEO } from "@/app/utils/constants";
+import { FALLBACK_SEO } from "@/app/(site)/utils/constants";
 
-async function getGlobal(lang: string): Promise<any> {
+async function getGlobal(): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   if (!token)
@@ -39,7 +39,7 @@ export async function generateMetadata({
 }: {
   params: { lang: string };
 }): Promise<Metadata> {
-  const meta = await getGlobal(params.lang);
+  const meta = await getGlobal();
 
   if (!meta.data) return FALLBACK_SEO;
 
@@ -57,12 +57,10 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
-  const global = await getGlobal(params.lang);
+  const global = await getGlobal();
   // TODO: CREATE A CUSTOM ERROR PAGE
   if (!global.data) return null;
 
@@ -77,7 +75,7 @@ export default async function RootLayout({
   );
 
   return (
-    <html lang={params.lang}>
+    <html>
       <body>
         <Navbar
           links={navbar.links}
@@ -88,8 +86,6 @@ export default async function RootLayout({
         <main className="dark:bg-black dark:text-gray-100 min-h-screen">
           {children}
         </main>
-
-        <Banner data={notificationBanner} />
 
         <Footer
           logoUrl={footerLogoUrl}

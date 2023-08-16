@@ -1,6 +1,7 @@
-import { fetchAPI } from "@/app/utils/fetch-api";
-import Post from "@/app/views/post";
+import { fetchAPI } from "@/app/(site)/utils/fetch-api";
+import Post from "@/app/(site)/views/post";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 async function getPostBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -53,6 +54,15 @@ export default async function PostRoute({
   const { slug } = params;
   const data = await getPostBySlug(slug);
   if (data.data.length === 0) return <h2>no post found</h2>;
+
+  const isLegacy = data.data[0].attributes.blocks.some(
+    (block: any) => block.__component === "shared.html"
+  );
+
+  if (isLegacy) {
+    redirect(`/theglobalvc/${slug}`);
+  }
+
   return <Post data={data.data[0]} />;
 }
 
