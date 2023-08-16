@@ -63,7 +63,13 @@ export default async function PostRoute({
     const htmlElement = data.data[0].attributes.blocks.find(
       (block: any) => block.__component === "shared.html"
     );
-    return <span dangerouslySetInnerHTML={{ __html: htmlElement.body }} />;
+    return (
+      <iframe
+        title="Contenido HTML"
+        srcDoc={htmlElement.body}
+        style={{ width: "100%", height: "400px", backgroundColor: "white" }}
+      />
+    );
   }
 
   return <Post data={data.data[0]} />;
