@@ -60,7 +60,10 @@ export default async function PostRoute({
   );
 
   if (isLegacy) {
-    redirect(`/theglobalvc/${slug}`);
+    const htmlElement = data.data[0].attributes.blocks.find(
+      (block: any) => block.__component === "shared.html"
+    );
+    return <span dangerouslySetInnerHTML={{ __html: htmlElement.body }} />;
   }
 
   return <Post data={data.data[0]} />;
